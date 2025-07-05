@@ -67,16 +67,41 @@ The main processing workflow:
 
 ### Search Documents
 
-Search across embedded chunks:
+Once you've embedded the chunks, you can perform semantic searches:
+
+#### Quick Search
 ```bash
-llm embed search files "your search query"
+./scripts/search_bills.sh "agriculture policy" 3
+```
+
+#### Detailed Search (with content preview)
+```bash
+./scripts/search_bills_detailed.sh "tax provisions"
+```
+
+#### Interactive Search
+```bash
+./scripts/interactive_search.sh
+```
+
+#### Direct LLM Commands
+```bash
+# Basic similarity search
+llm similar files -c "agriculture and nutrition programs" -n 5
+
+# Plain text output
+llm similar files -c "healthcare" -n 3 -p
+
+# Search similar to specific chunk
+llm similar files BBB_chunk_01
 ```
 
 Example searches:
 ```bash
-llm embed search files "agriculture policy"
-llm embed search files "tax provisions"
-llm embed search files "environmental regulations"
+llm similar files -c "SNAP benefits and work requirements"
+llm similar files -c "crop insurance policy"
+llm similar files -c "environmental regulations"
+llm similar files -c "tax policy changes"
 ```
 
 ## Files
